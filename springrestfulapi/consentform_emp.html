@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>SignUp</title>
+
+    <style>
+p {
+  font-family: verdana;
+  text-align: center;
+  font-size: 10;
+}
+    </style>
+</head>
+
+<body>
+    <form action="action_page.php">
+
+        <div class="container">
+                <label for="moreNo"><p>Enter your mortgage ID<p></label>
+                <input type="text" placeholder="Mortgage ID" name="morNo" required>
+                        <br>
+                <label for="brokerAddress"><p>Enter the web address of the Mortgage Broker<p></label>
+                <input type="text" placeholder="Broker Address" name="brokerAddress" required>
+                        <br>                                     
+                <label for="consent"><p>I consent to fowarding my application the mortgage broker</label>
+            <input type="checkbox" placeholder="consent" name="consent">
+            <br> <br>
+            <button type="submit">Agree</button>
+        </div>
+    </form>
+</body>
+
+</html>
