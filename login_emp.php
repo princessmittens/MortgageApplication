@@ -1,3 +1,30 @@
+<?php
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+$empId = $_POST["empID"];
+$pass = $_POST["pass"];
+
+echo 'https://employer-api.herokuapp.com/Employer/Employee/'.$empId;
+$curl = curl_init();
+curl_setopt_array($curl, array(
+CURLOPT_RETURNTRANSFER => 1,
+CURLOPT_URL => 'https://employer-api.herokuapp.com/Employer/Employee/'.$empId,
+
+));
+
+$resp = curl_exec($curl);
+$json = json_decode($resp, true);
+
+
+
+curl_close($curl);
+
+    if($pass == $json['employee_password']){
+        echo 'Login successful';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,7 +41,7 @@ p {
 </head>
 
 <body>
-    <form action="action_page.php">
+    <form action="" method="post">
 
         <div class="container">
             <label for="empID"><b><p>EmployeeID</b><p></label>

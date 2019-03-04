@@ -1,10 +1,26 @@
+<?php
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $email = $_POST["username"];
+    $pass = $_POST["pass"];
+    echo 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/'.$email;
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_URL => 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/'.$email,
+    ));
+    $resp = curl_exec($curl);
+    $json = json_decode($resp, true);
+    curl_close($curl);
+    if($pass == $json['user_password']){
+        echo 'Login successful';
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <title>Login</title>
-
     <style>
 p {
   font-family: verdana;
@@ -12,10 +28,8 @@ p {
 }
     </style>
 </head>
-
 <body>
-    <form action="action_page.php">
-
+    <form action="" method="post">
         <div class="container">
             <label for="username"><b><p>Username</b><p></label>
             <input type="text" placeholder="Enter Username" name="username" required>
