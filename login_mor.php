@@ -13,7 +13,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $json = json_decode($resp, true);
     curl_close($curl);
     if($pass == $json['user_password']){
-
+        if($json['user_employer']!=null)
+        {
+            $_SESSION['userbrid'] = $email;
+            header('Location: consent_status.php');
+        }
+        else
         $_SESSION['userbrid'] = $email;
         header('Location: form_mor.php');
     }
@@ -35,7 +40,7 @@ p {
     <form action="" method="post">
         <div class="container">
             <label for="username"><b><p>Username</b><p></label>
-            <input type="text" placeholder="Enter Username" name="username" required>
+            <input type="text" placeholder="Enter email" name="username" required>
                     <br><br>
             <label for="pass"><p><b>Password</b><p></label>
             <input type="password" placeholder="Enter Password" name="pass" required>
