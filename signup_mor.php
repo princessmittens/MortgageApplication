@@ -32,6 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     //Execute the request
     $result = curl_exec($ch);
 
+    header('Location: login_mor.php');
+
 }
 ?>
 
