@@ -36,6 +36,9 @@
                 <a class="nav-link" href="login_mor.php">Mor login</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="consent_status.php">Status</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
             </li>
         </ul>
