@@ -1,30 +1,69 @@
 <?php
+session_start();
 
+if (!isset($_SESSION['userbrid'])){
+    header('Location: login_mor.php');
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+
+        $userbrid =  $_SESSION['userbrid'];
+        echo $userbrid;
+    $curl = curl_init();
+    curl_setopt_array($curl, array(
+        CURLOPT_RETURNTRANSFER => 1,
+        CURLOPT_URL => 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/'.$userbrid,
+    ));
+    $resp = curl_exec($curl);
+    $json = json_decode($resp, true);
+    curl_close($curl);
+
+
+$useremail = $json['user_emailID'];
+$userpass = $json['user_password'];
+$username = $json['user_name'];
+
+
         $empName = $_POST["employer_name"];
         $name = $_POST["name"];
         $address = $_POST["address"];
         $postalcode = $_POST["postalcode"];
         $phone = $_POST["phone"];
 
-    $url = 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/';
+//        echo $useremail;
+//        echo $userpass;
+//        echo $username;
+//        echo $empName;
+//        echo $name;
+//        echo $address;
+//        echo $postalcode;
+//        echo $phone;
+    $url = 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/'.$userbrid;
         //Initiate cURL.
+
+    echo $url;
+
         $ch = curl_init($url);
 
         //The JSON data.
         $postData = array(
+            "user_emailID" => $useremail,
+        "user_name"=> $username,
+        "user_password" => $userpass,
 "user_employer" => $empName,
-"empLastName" => $name,
 "user_address" => $address,
 "user_postalCode" => $postalcode,
-"user_phoneNumber" => $phone
+"user_phoneNumber" => $phone,
+             "user_salary"=> null,
+        "user_empStartDate"=> null,
+        "user_approvalStatus"=> null
         );
 
 //Encode the array into JSON.
 $jsonDataEncoded = json_encode($postData);
-
+//
+//echo $jsonDataEncoded;
 //Tell cURL that we want to send a POST request.
-curl_setopt($ch, CURLOPT_POST, 1);
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 
 //Attach our encoded JSON string to the POST fields.
 curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
@@ -34,6 +73,8 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 
 //Execute the request
 $result = curl_exec($ch);
+
+
 }
 
 

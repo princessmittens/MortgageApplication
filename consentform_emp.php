@@ -1,8 +1,11 @@
 <?php
-
+session_start();
+if (!isset($_SESSION['userempid'])){
+    header('Location: login_emp.php');
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $morid = $_POST["morNo"];
-    $baddress = $_POST["brokeraddress"];
+    $baddress = $_POST["brokerAddress"];
 
     $url = 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/' . $morid;
     $curl = curl_init();
@@ -14,16 +17,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $json = json_decode($resp, true);
     curl_close($curl);
     if ($json['user_address'] == $baddress) {
+
+
+        $useremail = $json['user_emailID'];
+        $userpass = $json['user_password'];
+        $username = $json['user_name'];
+        $empName = $json['user_employer'];
+        $address = $json['user_address'];
+        $postalcode = $json['user_postalCode'];
+        $phone = $json['user_phoneNumber'];
+
+
+
         //Initiate cURL.
         $ch = curl_init($url);
         //The JSON data.
         $postData = array(
-            "user_approvalStatus" => 'APPROVED'
+            "user_emailID" => $useremail,
+            "user_name"=> $username,
+            "user_password" => $userpass,
+            "user_employer" => $empName,
+            "user_address" => $address,
+            "user_postalCode" => $postalcode,
+            "user_phoneNumber" => $phone,
+            "user_salary"=> null,
+            "user_empStartDate"=> null,
+            "user_approvalStatus"=> 'APPROVED'
         );
 //Encode the array into JSON.
         $jsonDataEncoded = json_encode($postData);
 //Tell cURL that we want to send a POST request.
-        curl_setopt($ch, CURLOPT_PUT, 1);
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
 //Attach our encoded JSON string to the POST fields.
         curl_setopt($ch, CURLOPT_POSTFIELDS, $jsonDataEncoded);
 //Set the content type to application/json

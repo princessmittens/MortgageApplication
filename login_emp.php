@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 $empId = $_POST["empID"];
 $pass = $_POST["pass"];
@@ -20,7 +20,10 @@ $json = json_decode($resp, true);
 curl_close($curl);
 
     if($pass == $json['employee_password']){
-        echo 'Login successful';
+
+        $_SESSION['userempid'] = $empId;
+        header('Location: consentform_emp.php');
+
     }
 }
 ?>

@@ -1,8 +1,8 @@
 <?php
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $morid = $_SESSION['morid'];
-
+//    $morid = $_SESSION['morid'];
+    $morid = $_POST['morid'];
     $url = 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/' . $morid;
 
 
@@ -41,6 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
 <div class="container">
+    <form action="" method="post">
+
+        <div class="container">
+            <label for="moreNo"><p>Enter your mortgage ID<p></label>
+            <input type="text" placeholder="Mortgage ID" name="morid" required>
+            <button type="submit">Agree</button>
+        </div>
+    </form>
     <h1 name="statusconsent">Current status of your application is: <?php echo $json['user_approvalStatus']?></h1>
 </div>
 </body>
