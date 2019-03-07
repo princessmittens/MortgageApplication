@@ -26,7 +26,7 @@
             if(isset($_SESSION['userbrid'])||isset( $_SESSION['userempid']))
             {
                 echo '<li class="nav-item">
-                <a class="nav-link" href="logout.php">Status</a>
+                <a class="nav-link" href="logout.php">Logout</a>
             </li>';
             }
 
