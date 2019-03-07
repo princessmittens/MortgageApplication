@@ -11,17 +11,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL => 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/'.$userbrid,
+        CURLOPT_URL => 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/email/'.$userbrid,
     ));
     $resp = curl_exec($curl);
     $json = json_decode($resp, true);
     curl_close($curl);
-
+echo $json;
 
 $useremail = $json['user_emailID'];
 $userpass = $json['user_password'];
 $username = $json['user_name'];
-$id = $json['id'];
+
 
 
         $empName = $_POST["employer_name"];
@@ -39,7 +39,7 @@ $id = $json['id'];
 //        echo $address;
 //        echo $postalcode;
 //        echo $phone;
-    $url = 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/'.$userbrid;
+    $url = 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/email/'.$userbrid;
         //Initiate cURL.
 
     echo $url;
@@ -52,6 +52,7 @@ $id = $json['id'];
         "user_name"=> $username,
         "user_password" => $userpass,
 "user_employer" => $empName,
+"id"=>null,
 "user_address" => $address,
 "user_postalCode" => $postalcode,
 "user_phoneNumber" => $phone,
@@ -77,7 +78,7 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 //Execute the request
 $result = curl_exec($ch);
 
-    header('Location: consent_status.php');
+//    header('Location: consent_status.php');
 
 
 }

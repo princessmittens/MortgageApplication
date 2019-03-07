@@ -3,24 +3,27 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST["username"];
     $pass = $_POST["pass"];
-    echo 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/email'.$email;
+    echo 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/email/'.$email;
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL => 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/email'.$email,
+        CURLOPT_URL => 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/email/'.$email,
     ));
     $resp = curl_exec($curl);
     $json = json_decode($resp, true);
     curl_close($curl);
     if($pass == $json['user_password']){
-        if($json['user_employer']!=null)
-        {
-            $_SESSION['userbrid'] = $email;
-            header('Location: consent_status.php');
-        }
-        else
+//        if($json['user_employer']!=null)
+//        {
+//            $_SESSION['userbrid'] = $email;
+//            header('Location: consent_status.php');
+//        }
+//        else
+//        $_SESSION['userbrid'] = $email;
+//        header('Location: form_mor.php');
+
         $_SESSION['userbrid'] = $email;
-        header('Location: form_mor.php');
+            header('Location: consent_status.php');
     }
 }
 ?>

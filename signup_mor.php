@@ -4,6 +4,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $uname = $_POST["uname"];
     $pass = $_POST["pass"];
 
+
+
+    $empName = $_POST["employer_name"];
+    $name = $_POST["name"];
+    $address = $_POST["address"];
+    $postalcode = $_POST["postalcode"];
+    $phone = $_POST["phone"];
+
+
+
+
     $url = 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/';
 
     //Initiate cURL.
@@ -14,6 +25,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         "user_emailID" => $email,
         "user_name" => $uname,
         "user_password" => $pass,
+        "user_employer" => $empName,
+        "user_address" => $address,
+        "user_postalCode" => $postalcode,
+        "user_phoneNumber" => $phone,
+        "user_salary"=> null,
+        "user_empStartDate"=> null,
+        "user_approvalStatus"=> null
 
     );
 
@@ -60,28 +78,7 @@ p {
 </head>
 
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="login_emp.php">Emp login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="login_mor.php">Mor login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
-    </div>
-</nav>
+<?php include "navbar.php" ?>
     <form action="" method="post">
 
         <div class="container">
@@ -92,7 +89,29 @@ p {
                 <input type="text" placeholder="Enter a username" name="uname" required>
                         <br><br>                                        
                 <label for="pass"><p><b>Create a password</b><p></label>
+
+
             <input type="password" placeholder="Create a password" name="pass" required>
+
+
+
+
+            <label for="employerInfo"><p>Enter your employer name<p></label>
+            <input type="text" placeholder="Employer Name" name="employer_name" required>
+            <br>
+            <label for="name"><p>Enter your name<p></label>
+            <input type="text" placeholder="Name" name="name" required>
+            <br>
+            <label for="address"><p>Enter your address<p></label>
+            <input type="text" placeholder="Address" name="address" required>
+            <br>
+            <label for="name"><p>Enter your postal code<p></label>
+            <input type="text" placeholder="Postal Code" name="postalcode" required>
+            <br>
+            <label for="phone"><p>Enter your phone numSber<p></label>
+            <input type="text" placeholder="Phone Number" name="phone" required>
+
+
             <br> <br>
             <button type="submit">Sign Up</button>
         </div>

@@ -6,27 +6,28 @@ if (!isset($_SESSION['userbrid'])){
 }
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 //    $morid = $_SESSION['morid'];
 //    $morid = $_POST['morid'];
     $userbrid =  $_SESSION['userbrid'];
-    $url = 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/' . $userbrid;
+
+
+    $url = 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/email/' . $userbrid;
 
 
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL => 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/' . $userbrid,
+        CURLOPT_URL => 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/email/' . $userbrid,
 
     ));
+
 
     $resp = curl_exec($curl);
     $json = json_decode($resp, true);
 
-
     curl_close($curl);
 
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -57,12 +58,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <div class="container">
 
-            <h1 name="statusconsent">Current status of your application is: <?php if($json['user_approvalStatus'] == 'APPRIVED'){echo 'APPROVED';} else {echo 'PENDING';} ?></h1>
+            <h1 name="statusconsent">Current status of your application is: <?php if($json['user_approvalStatus'] == 'APPROVED'){echo 'APPROVED';} else {echo 'PENDING';} ?></h1>
 <!--            <label for="moreNo"><p>Enter your mortgage ID<p></label>-->
 <!--            <input type="text" placeholder="Mortgage ID" name="morid" required>-->
 <!--            <button type="submit">Agree</button>-->
 
-            <h3>Your application id is: <?php echo $json['id'] . " Go to employer website and fill out the consent form. " .$json?></h3>
+            <h3>Your application id is: <?php echo $json['id'] . " Go to employer website and fill out the consent form. " ?></h3>
         </div>
     </form>
 
