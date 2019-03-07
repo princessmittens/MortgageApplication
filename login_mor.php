@@ -3,11 +3,11 @@ session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST["username"];
     $pass = $_POST["pass"];
-    echo 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/'.$email;
+    echo 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/email'.$email;
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_RETURNTRANSFER => 1,
-        CURLOPT_URL => 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/'.$email,
+        CURLOPT_URL => 'https://brokerapi.herokuapp.com/mortagageBroker/usersAtBroker/email'.$email,
     ));
     $resp = curl_exec($curl);
     $json = json_decode($resp, true);

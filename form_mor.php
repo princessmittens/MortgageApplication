@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 $useremail = $json['user_emailID'];
 $userpass = $json['user_password'];
 $username = $json['user_name'];
+$id = $json['id'];
 
 
         $empName = $_POST["employer_name"];
@@ -28,6 +29,7 @@ $username = $json['user_name'];
         $address = $_POST["address"];
         $postalcode = $_POST["postalcode"];
         $phone = $_POST["phone"];
+
 
 //        echo $useremail;
 //        echo $userpass;

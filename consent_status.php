@@ -62,7 +62,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!--            <input type="text" placeholder="Mortgage ID" name="morid" required>-->
 <!--            <button type="submit">Agree</button>-->
 
-            <h3>Your application id is: <?php echo $json['user_ID'] . " Go to employer website and fill out the consent form. " .$json?></h3>
+            <h3>Your application id is: <?php echo $json['id'] . " Go to employer website and fill out the consent form. " .$json?></h3>
         </div>
     </form>
 

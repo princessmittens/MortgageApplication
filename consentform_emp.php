@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username = $json['user_name'];
         $empName = $json['user_employer'];
         $address = $json['user_address'];
+
         $postalcode = $json['user_postalCode'];
         $phone = $json['user_phoneNumber'];
 
@@ -44,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             "user_postalCode" => $postalcode,
             "user_phoneNumber" => $phone,
             "user_salary"=> null,
+            "id" => $morid,
             "user_empStartDate"=> null,
             "user_approvalStatus"=> 'APPROVED'
         );
