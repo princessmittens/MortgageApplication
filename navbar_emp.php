@@ -8,18 +8,18 @@
             <li class="nav-item active">
                 <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="signup_mor.php">SIGNUP</a>
-            </li>
 <!--            <li class="nav-item">-->
-<!--                <a class="nav-link" href="login_emp.php">Emp login</a>-->
+<!--                <a class="nav-link" href="signup_mor.php">SIGNUP</a>-->
 <!--            </li>-->
-            <li class="nav-item">
-                <a class="nav-link" href="login_mor.php">Mor login</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="consent_status.php">Status</a>
-            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login_emp.php">Emp login</a>
+                        </li>
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="login_mor.php">Mor login</a>-->
+<!--            </li>-->
+<!--            <li class="nav-item">-->
+<!--                <a class="nav-link" href="consent_status.php">Status</a>-->
+<!--            </li>-->
 
             <?php
 

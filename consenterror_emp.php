@@ -20,7 +20,7 @@
 </head>
 
 <body>
-<?php include "navbar.php" ?>
+<?php include "navbar_emp.php" ?>
 <text><p> Error, you must provide consent <br>
         to submit your application the mortgage broker.</p> </text>
 </body>

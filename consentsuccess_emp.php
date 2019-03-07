@@ -20,7 +20,7 @@ p {
 </head>
 
 <body>
-<?php include "navbar.php" ?>
+<?php include "navbar_emp.php" ?>
  <text><p> Success, your application has been sent to the mortgage broker's site <br>
      for further consideration. Please login into your <br>
      Broker's site to view your status</p> </text>

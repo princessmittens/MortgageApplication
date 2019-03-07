@@ -49,7 +49,7 @@ p {
 </head>
 
 <body>
-<?php include "navbar.php" ?>
+<?php include "navbar_emp.php" ?>
     <form action="" method="post">
 
         <div class="container">
