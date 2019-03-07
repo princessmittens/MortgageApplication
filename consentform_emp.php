@@ -4,6 +4,11 @@ if (!isset($_SESSION['userempid'])){
     header('Location: login_emp.php');
 }
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+    if(!isset($_POST["consent"]))
+    {
+        header('Location: consenterror_emp.php');
+    }
     $morid = $_POST["morNo"];
     $baddress = $_POST["brokerAddress"];
 
@@ -52,6 +57,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
 //Execute the request
         $result = curl_exec($ch);
+
+        header('Location: consentsuccess_emp.php');
     }
 }
 ?>
@@ -90,7 +97,7 @@ p {
                 <input type="text" placeholder="Broker Address" name="brokerAddress" required>
                         <br>                                     
                 <label for="consent" ><p>I consent to fowarding my application the mortgage broker</label>
-            <input type="checkbox" placeholder="consent" name="consent" required>
+            <input type="checkbox" placeholder="consent" name="consent">
             <br> <br>
             <button type="submit">Agree</button>
         </div>

@@ -24,7 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $json = json_decode($resp, true);
 
 
-
     curl_close($curl);
 
 }
@@ -62,6 +61,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!--            <label for="moreNo"><p>Enter your mortgage ID<p></label>-->
 <!--            <input type="text" placeholder="Mortgage ID" name="morid" required>-->
 <!--            <button type="submit">Agree</button>-->
+
+            <h3>Your application id is: <?php echo $json['user_ID'] . " Go to employer website and fill out the consent form. " .$json?></h3>
         </div>
     </form>
 
